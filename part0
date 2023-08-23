@@ -1,0 +1,36 @@
+0.4 NEW NOTE DIAGRAM
+
+suquenceDiagram
+  participant BROWSER
+  participant SERVER
+  participant USER
+
+  USER inititates field focus
+  USER types into field
+  USER invokes save button
+  BROWSER-->>SERVER POST new note, activate server
+  BROWSER-->>SERVER GET updated content (HTML w/ updated UL, css, JavaScript)
+  SERVER-->>BROWSER updated content, deactivate server
+  BROWSER refreshes to render updated content from step 12
+
+0.5 SINGLE PAGE APP LOAD
+
+Loading the SPA version is almost the same as the non-SPA version, except the initial browser-->server GET fetches different content
+(spa instead of notes and spa.js instead of main.js)
+
+0.6 SINGLE PAGE APP NEW NOTE
+
+This is where the SPA version is much different than the non-SPA version
+
+We can pick up from line 10
+USER invokes save button
+BROWSER executes JavaScript call stack
+JavaScript displays the new note in the UL
+BROWSER does not need to refresh
+New note is displayed as part of the JavaScript function that was executed in the session
+BROWSER-->>SERVER POST new note activate server
+Deactivate SERVER
+Next time the browser is refreshed and GET is called to fetch the data, the new note will be displayed within the data fetched from the SERVER, not from the previous session's JS execution
+  
+
+  
